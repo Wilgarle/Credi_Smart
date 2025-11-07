@@ -1,0 +1,173 @@
+
+/* ESTILOS GENERALES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+body {
+    font-family: 'segoe IU', Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* NAVEGACION */
+
+.navbar {
+    background-color: #1e3a8a;
+    padding: 1rem 0 ;   
+    box-shadow: 0 2px;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    color: white;
+    font-size: 1.8rem;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+    color: #60a5fa;
+}
+
+/* BANNER PRINCIPAL */
+.hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem ;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+
+.credits_section {
+    padding:  3rem 0;
+}
+
+.credits_section h3 {
+    font-size: 2rem;
+    color: #1e3a8a;
+    margin-bottom: 2rem;
+}
+
+.credits_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.credit_card {
+    background: white;
+    border-radius: 12;
+    padding: 1.5rem;
+    box-shadow: 0 2px rgba(0, 0, 0, 0);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.credit_card:hover {
+    transform: translate(-px);
+    box-shadow: 0 4px 15 rgba(30, 58, 138, 0.2);
+}
+
+.card_header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    font-size: 2.5rem;
+    background: rgba(5, 9, 247, 0.774);
+    border-radius: 1.5rem;
+}
+
+.card_header h4 {
+    font-size: 1.5rem;
+    color: #1e3a8a;
+}
+
+.details {
+    margin-bottom: 1.5rem;
+}
+
+.detail_item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.label {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.value {
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.value_highlight {
+    color: #10b981;
+    font-size: 1.1rem;
+}
+
+.btn_primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn_primary:hover {
+    background: linear-gradient(135deg, #1e8a6f 10%, #31e76e 100%);
+}
+
+.botton {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.botton a {
+    color: #10b981;
+}

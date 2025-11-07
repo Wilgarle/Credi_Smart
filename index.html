@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos principales: idioma, codificación y vista responsive -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CrediSmart - Catálogo de créditos personales, vivienda, vehículo, educativo, empresarial y de consumo.">
+    <title>CrediSmart - Crédito en línea</title>
+
+    <!-- Enlace al archivo de estilos principal -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <!-- <nav> etiqueta semántica para la barra de navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logo principal del sitio -->
+            <h1 class="logo">💵 CrediSmart</h1>
+
+            <!-- Menú de navegación con enlaces a las demás páginas -->
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="simulador.html">Search</a></li>
+                <li><a href="solicitar.html">Solicitar Crédito</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- BANNER PRINCIPAL -->
+    <!-- <header> se usa aquí como cabecera visual de la página -->
+    <header class="hero">
+        <div class="container">
+            <h2>Encuentra el crédito perfecto para ti</h2>
+            <p>Tasas competitivas, aprobación rápida y sin trámites complicados.</p>
+        </div>
+    </header>
+
+    <!-- SECCIÓN PRINCIPAL DE PRODUCTOS CREDITICIOS -->
+    <!-- <main> contiene el contenido principal del documento -->
+    <main class="container">
+        <!-- <section> agrupa los productos crediticios -->
+        <section class="credits_section">
+            <h3>Nuestros productos</h3>
+
+            <!-- GRID DE TARJETAS DE CRÉDITO -->
+            <div class="credits_grid">
+
+                <!-- Tarjeta #1 -->
+                <div class="credit_card">
+                    <div class="card_header">
+                        <span class="icon">💰</span>
+                        <h4>Crédito Libre Inversión</h4>
+                    </div>
+                    <p>Dinero rápido para lo que necesites sin justificar su uso.</p>
+
+                    <div class="details">
+                        <div class="detail_item">
+                            <span class="label">Tasa de interés:</span>
+                            <span class="value_highlight">1.8% mensual</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Monto:</span>
+                            <span class="value">$1M - $30M</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Plazo:</span>
+                            <span class="value">Hasta 60 meses</span>
+                        </div>
+                    </div>
+
+                    <!-- Botón de acción -->
+                    <button class="btn_primary">Solicitar Ahora</button>
+                </div>
+
+                <!-- Tarjeta #2 -->
+                <div class="credit_card">
+                    <div class="card_header">
+                        <span class="icon">🚗</span>
+                        <h4>Crédito Vehículo</h4>
+                    </div>
+                    <p>Financia la compra de tu vehículo nuevo o usado.</p>
+
+                    <div class="details">
+                        <div class="detail_item">
+                            <span class="label">Tasa de interés:</span>
+                            <span class="value_highlight">1.5% mensual</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Monto:</span>
+                            <span class="value">$5M - $50M</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Plazo:</span>
+                            <span class="value">Hasta 72 meses</span>
+                        </div>
+                    </div>
+
+                    <button class="btn_primary">Solicitar Ahora</button>
+                </div>
+
+                <!-- Tarjeta #3 -->
+                <div class="credit_card">
+                    <div class="card_header">
+                        <span class="icon">🏠</span>
+                        <h4>Crédito Vivienda</h4>
+                    </div>
+                    <p>Adquiere, mejora o construye la vivienda de tus sueños.</p>
+
+                    <div class="details">
+                        <div class="detail_item">
+                            <span class="label">Tasa de interés:</span>
+                            <span class="value_highlight">1.2% mensual</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Monto:</span>
+                            <span class="value">$10M - $200M</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Plazo:</span>
+                            <span class="value">Hasta 240 meses</span>
+                        </div>
+                    </div>
+
+                    <button class="btn_primary">Solicitar Ahora</button>
+                </div>
+
+                <!-- Tarjeta #4 -->
+                <div class="credit_card">
+                    <div class="card_header">
+                        <span class="icon">🎓</span>
+                        <h4>Crédito Educativo</h4>
+                    </div>
+                    <p>Financia tus estudios universitarios, posgrados o cursos técnicos.</p>
+
+                    <div class="details">
+                        <div class="detail_item">
+                            <span class="label">Tasa de interés:</span>
+                            <span class="value_highlight">1.0% mensual</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Monto:</span>
+                            <span class="value">$500K - $40M</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Plazo:</span>
+                            <span class="value">Hasta 84 meses</span>
+                        </div>
+                    </div>
+
+                    <button class="btn_primary">Solicitar Ahora</button>
+                </div>
+
+                <!-- Tarjeta #5 -->
+                <div class="credit_card">
+                    <div class="card_header">
+                        <span class="icon">🏢</span>
+                        <h4>Crédito Empresarial</h4>
+                    </div>
+                    <p>Créditos para capital de trabajo e inversión en tu empresa.</p>
+
+                    <div class="details">
+                        <div class="detail_item">
+                            <span class="label">Tasa de interés:</span>
+                            <span class="value_highlight">2.0% mensual</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Monto:</span>
+                            <span class="value">$10M - $500M</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Plazo:</span>
+                            <span class="value">Según análisis</span>
+                        </div>
+                    </div>
+
+                    <button class="btn_primary">Solicitar Ahora</button>
+                </div>
+
+                <!-- Tarjeta #6 -->
+                <div class="credit_card">
+                    <div class="card_header">
+                        <span class="icon">🛒</span>
+                        <h4>Crédito de Consumo</h4>
+                    </div>
+                    <p>Financia tus compras personales y gastos del hogar.</p>
+
+                    <div class="details">
+                        <div class="detail_item">
+                            <span class="label">Tasa de interés:</span>
+                            <span class="value_highlight">1.6% mensual</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Monto:</span>
+                            <span class="value">$500K - $20M</span>
+                        </div>
+                        <div class="detail_item">
+                            <span class="label">Plazo:</span>
+                            <span class="value">Hasta 48 meses</span>
+                        </div>
+                    </div>
+
+                    <button class="btn_primary">Solicitar Ahora</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="botton">
+        <p>&copy; 2025 CrediSmart. Todos los derechos reservados.</p>
+        <p>
+            <a href="#">Política de privacidad</a> | 
+            <a href="#">Contacto</a>
+        </p>
+        <p>
+            <a href="https://www.facebook.com/" target="_blank">Facebook</a> | 
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+        </p>
+    </footer>
+
+</body>
+</html>
