@@ -22,6 +22,17 @@ Este proyecto aplica los principios de **HTML5**, **CSS3** y **diseño responsiv
 
 ---
 
+# Capturas
+![captura1](img/Screenshot_1.png)
+![captura2](img/Screenshot_2.png)
+![captura3](img/Screenshot_3.png)
+
+---
+
 # Autor
 Desarrollado por **William García Leonel**  
 Proyecto académico — Ingeniería Web I — 2025.
+
+
+
+
