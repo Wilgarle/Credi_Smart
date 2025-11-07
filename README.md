@@ -14,7 +14,7 @@ Este proyecto aplica los principios de **HTML5**, **CSS3** y **diseño responsiv
 
 ---
 
-# utilizadas
+# Tecnologia utilizadas
 
 - HTML5 (estructura semántica)  
 - CSS3 (estilos y diseño responsive)  
