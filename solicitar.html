@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario de solicitud de crédito - CrediSmart.">
+    <title>CrediSmart - Solicitar Crédito</title>
+
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">💵 CrediSmart</h1>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="simulador.html">Search</a></li>
+                <li><a href="solicitar.html" class="active">Solicitar Crédito</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ENCABEZADO PRINCIPAL -->
+    <header class="hero">
+        <div class="container">
+            <h2>Solicitud de Crédito</h2>
+            <p>Completa la información para iniciar tu solicitud de crédito con CrediSmart.</p>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+        <section class="credits_section">
+            <h3>Formulario de Solicitud</h3>
+            <p>Los campos marcados con * son obligatorios.</p>
+
+            <!-- FORMULARIO PRINCIPAL -->
+            <form class="credit_form">
+
+                <!-- BLOQUE 1: DATOS PERSONALES -->
+                <fieldset class="form_group">
+                    <!-- <legend> muestra el título del grupo -->
+                    <legend>Datos Personales</legend>
+
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ejemplo: Juan Pérez" required>
+
+                    <label for="cedula">Cédula *</label>
+                    <input type="number" id="cedula" name="cedula" placeholder="Ejemplo: 1012345678" required>
+
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ejemplo: 3001234567" required>
+                </fieldset>
+
+                <!-- BLOQUE 2: DATOS DEL CRÉDITO -->
+                <fieldset class="form_group">
+                    <legend>Datos del Crédito</legend>
+
+                    <label for="tipo_credito">Tipo de crédito *</label>
+                    <select id="tipo_credito" name="tipo_credito" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="libre">Crédito Libre Inversión</option>
+                        <option value="vehiculo">Crédito Vehículo</option>
+                        <option value="vivienda">Crédito Vivienda</option>
+                        <option value="educativo">Crédito Educativo</option>
+                        <option value="empresarial">Crédito Empresarial</option>
+                        <option value="consumo">Crédito de Consumo</option>
+                    </select>
+
+                    <label for="monto">Monto solicitado *</label>
+                    <input type="number" id="monto" name="monto" placeholder="Ejemplo: 15000000" required>
+
+                    <label for="plazo">Plazo en meses *</label>
+                    <select id="plazo" name="plazo" required>
+                        <option value="">Selecciona</option>
+                        <option value="12">12 meses</option>
+                        <option value="24">24 meses</option>
+                        <option value="36">36 meses</option>
+                        <option value="48">48 meses</option>
+                        <option value="60">60 meses</option>
+                    </select>
+
+                    <label for="destino">Destino del crédito</label>
+                    <textarea id="destino" name="destino" rows="3" placeholder="Describe brevemente el uso del crédito"></textarea>
+                </fieldset>
+
+                <!-- BLOQUE 3: DATOS LABORALES -->
+                <fieldset class="form_group">
+                    <legend>Datos Laborales</legend>
+
+                    <label for="empresa">Empresa donde trabaja *</label>
+                    <input type="text" id="empresa" name="empresa" placeholder="Ejemplo: ABC Ltda." required>
+
+                    <label for="cargo">Cargo *</label>
+                    <input type="text" id="cargo" name="cargo" placeholder="Ejemplo: Analista Financiero" required>
+
+                    <label for="ingresos">Ingresos mensuales *</label>
+                    <input type="number" id="ingresos" name="ingresos" placeholder="Ejemplo: 2500000" required>
+                </fieldset>
+
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="form_actions">
+                    <!-- Botón de envío -->
+                    <button type="submit" class="btn_primary">Enviar Solicitud</button>
+
+                    <!-- Botón para limpiar el formulario -->
+                    <button type="reset" class="btn_secondary">Limpiar Formulario</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="botton">
+        <p>&copy; 2025 CrediSmart. Todos los derechos reservados.</p>
+        <p>
+            <a href="#">Política de privacidad</a> | 
+            <a href="#">Contacto</a>
+        </p>
+        <p>
+            <a href="https://www.facebook.com/" target="_blank">Facebook</a> | 
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+        </p>
+    </footer>
+
+</body>
+</html>
