@@ -170,9 +170,8 @@ body {
     font-size: 1.1rem;
 }
 
-/* =========================================
-   ESTILOS DE BOTONES Y ELEMENTOS INTERACTIVOS
-========================================= */
+/* ESTILOS DE BOTONES Y ELEMENTOS INTERACTIVOS */
+
 .btn_primary {
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     color: white;
@@ -190,9 +189,7 @@ body {
     background: linear-gradient(135deg, #10b981 0%, #22d3ee 100%);
 }
 
-/* =========================================
-   ESTILOS DEL FOOTER
-========================================= */
+/* ESTILOS DEL FOOTER */
 .botton {
     background-color: #1e3a8a;
     color: white;
@@ -212,9 +209,7 @@ body {
     color: #6ee7b7;
 }
 
-/* =========================================
-   DISEÑO RESPONSIVE (para tablets y móviles)
-========================================= */
+/*  DISEÑO RESPONSIVE */
 @media (max-width: 768px) {
     .menu {
         flex-direction: column;
