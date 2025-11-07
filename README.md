@@ -5,7 +5,7 @@ Este proyecto aplica los principios de **HTML5**, **CSS3** y **diseño responsiv
 
 ---
 
-## 📘 Características
+#Características
 
 - Página principal (`index.html`): catálogo de créditos disponibles.  
 - Página de simulador (`simulador.html`): búsqueda y filtrado de créditos por nombre o monto.  
@@ -14,7 +14,7 @@ Este proyecto aplica los principios de **HTML5**, **CSS3** y **diseño responsiv
 
 ---
 
-## 🧩 Tecnologías utilizadas
+# utilizadas
 
 - HTML5 (estructura semántica)  
 - CSS3 (estilos y diseño responsive)  
@@ -22,6 +22,6 @@ Este proyecto aplica los principios de **HTML5**, **CSS3** y **diseño responsiv
 
 ---
 
-## 👨‍💻 Autor
+# Autor
 Desarrollado por **William García Leonel**  
 Proyecto académico — Ingeniería Web I — 2025.
