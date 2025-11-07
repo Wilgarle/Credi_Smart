@@ -12,14 +12,13 @@
 </head>
 
 <body>
-
     <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="navbar">
         <div class="container">
             <h1 class="logo">💵 CrediSmart</h1>
             <ul class="menu">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="simulador.html" class="active">Search</a></li>
+                <li><a href="simulador.html" class="active">Simular Crédito</a></li>
                 <li><a href="solicitar.html">Solicitar Crédito</a></li>
             </ul>
         </div>
@@ -34,42 +33,41 @@
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="container">
-        <!-- SECCIÓN DE FILTROS -->
-        <section class="credits_section">
-            <h3>Filtrar créditos</h3>
+<main class="container">
+    <section class="simulator_section">
+        <h3>Simulador de Créditos</h3>
 
-            <!-- FORMULARIO DE BÚSQUEDA -->
-            <!-- Aquí el usuario podría escribir el nombre del crédito -->
-            <form class="filter_form">
-                <!-- Campo de texto para búsqueda -->
-                <div class="filter_group">
-                    <label for="search">Buscar por nombre:</label>
-                    <input type="text" id="search" name="search" placeholder="Ejemplo: vivienda, vehículo...">
-                </div>
+        <!-- CAJA DE FILTROS -->
+        <div class="filter_box">
+            <!-- Campo de búsqueda -->
+            <div class="filter_controls">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar crédito por nombre...">
+            </div>
 
-                <!-- Botones de rangos de monto -->
-                <div class="filter_group">
-                    <span>Rango de monto:</span>
-                    <div class="range_buttons">
-                        <!-- Cada botón representa un rango de monto -->
-                        <button type="button" class="btn_secondary">$1M - $5M</button>
-                        <button type="button" class="btn_secondary">$5M - $15M</button>
-                        <button type="button" class="btn_secondary">$15M - $30M</button>
-                        <button type="button" class="btn_secondary">Más de $30M</button>
-                    </div>
-                </div>
-            </form>
-        </section>
+            <!-- Botones de filtro por rango -->
+            <div class="filter_buttons">
+                <button class="btn_filter active" data-min="0" data-max="999999999">Todos</button>
+                <button class="btn_filter" data-min="0" data-max="5000000">$0 - $5M</button>
+                <button class="btn_filter" data-min="5000001" data-max="10000000">$5M - $10M</button>
+                <button class="btn_filter" data-min="10000001" data-max="20000000">$10M - $20M</button>
+                <button class="btn_filter" data-min="20000001" data-max="30000000">$20M - $30M</button>
+            </div>
+        </div>
 
-        <!-- RESULTADOS DE CRÉDITOS (cards estáticos) -->
-        <section class="credits_section">
-            <h3>Resultados de búsqueda</h3>
+        <!-- RESULTADOS -->
+        <div class="results_section">
+            <h4>Resultados disponibles</h4>
+            <div id="resultsContainer" class="credits_grid">
+            </div>
+        </div>
+    </section>
+</main>
+
 
             <!-- GRID DE TARJETAS -->
             <div class="credits_grid">
 
-                <!-- Tarjeta #1 -->
+                <!-- CREDITO #1 -->
                 <div class="credit_card">
                     <div class="card_header">
                         <span class="icon">💰</span>
@@ -93,7 +91,7 @@
                     <button class="btn_primary">Solicitar Ahora</button>
                 </div>
 
-                <!-- Tarjeta #2 -->
+                <!-- CREDITO #2 -->
                 <div class="credit_card">
                     <div class="card_header">
                         <span class="icon">🚗</span>
@@ -117,7 +115,7 @@
                     <button class="btn_primary">Solicitar Ahora</button>
                 </div>
 
-                <!-- Tarjeta #3 -->
+                <!-- CREDITO #3 -->
                 <div class="credit_card">
                     <div class="card_header">
                         <span class="icon">🏠</span>
@@ -141,7 +139,7 @@
                     <button class="btn_primary">Solicitar Ahora</button>
                 </div>
 
-                <!-- Tarjeta #4 -->
+                <!-- CREDITO #4 -->
                 <div class="credit_card">
                     <div class="card_header">
                         <span class="icon">🎓</span>
@@ -165,7 +163,7 @@
                     <button class="btn_primary">Solicitar Ahora</button>
                 </div>
 
-                <!-- Tarjeta #5 -->
+                <!-- CREDITO #5 -->
                 <div class="credit_card">
                     <div class="card_header">
                         <span class="icon">🏢</span>
@@ -189,7 +187,7 @@
                     <button class="btn_primary">Solicitar Ahora</button>
                 </div>
 
-                <!-- Tarjeta #6 -->
+                <!-- CREDITO #6 -->
                 <div class="credit_card">
                     <div class="card_header">
                         <span class="icon">🛒</span>
@@ -216,6 +214,87 @@
             </div>
         </section>
     </main>
+
+
+
+/* SIMULADOR DE CRÉDITOS INTERACTIVO JS*/
+    <script>
+
+const creditos = [
+  { nombre: "Crédito Libre Inversión", monto: 10000000, icono: "💰" },
+  { nombre: "Crédito Vehículo", monto: 20000000, icono: "🚗" },
+  { nombre: "Crédito Vivienda", monto: 30000000, icono: "🏠" },
+  { nombre: "Crédito Educativo", monto: 8000000, icono: "🎓" },
+  { nombre: "Crédito Empresarial", monto: 25000000, icono: "🏢" },
+  { nombre: "Crédito de Consumo", monto: 5000000, icono: "🛒" },
+];
+
+/* Elementos del DOM */
+const resultsContainer = document.getElementById("resultsContainer");
+const searchInput = document.getElementById("searchInput");
+const filterButtons = document.querySelectorAll(".btn_filter");
+
+/* Función para crear tarjetas */
+function mostrarCreditos(lista) {
+  resultsContainer.innerHTML = ""; // limpia resultados
+  lista.forEach((credito) => {
+    const card = document.createElement("div");
+    card.classList.add("credit_card");
+    card.innerHTML = `
+      <div class="card_header">
+        <span class="icon">${credito.icono}</span>
+        <h4>${credito.nombre}</h4>
+      </div>
+      <p>Dinero rápido para lo que necesites sin justificar su uso.</p>
+      <div class="details">
+        <div class="detail_item">
+          <span class="label">Tasa de interés:</span>
+          <span class="value_highlight">1.8% mensual</span>
+        </div>
+        <div class="detail_item">
+          <span class="label">Monto:</span>
+          <span class="value">$${(credito.monto / 1000000).toFixed(1)}M</span>
+        </div>
+        <div class="detail_item">
+          <span class="label">Plazo:</span>
+          <span class="value">Hasta 60 Meses</span>
+        </div>
+      </div>
+      <button class="btn_primary">Solicitar Ahora</button>
+    `;
+    resultsContainer.appendChild(card);
+    // animación
+    setTimeout(() => card.classList.add("show"), 50);
+  });
+}
+
+
+mostrarCreditos(creditos);
+
+
+searchInput.addEventListener("input", () => {
+  const texto = searchInput.value.toLowerCase();
+  const filtrados = creditos.filter(c =>
+    c.nombre.toLowerCase().includes(texto)
+  );
+  mostrarCreditos(filtrados);
+});
+
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // quitar clase activa del resto
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const min = parseInt(btn.dataset.min);
+    const max = parseInt(btn.dataset.max);
+    const filtrados = creditos.filter(c => c.monto >= min && c.monto <= max);
+    mostrarCreditos(filtrados);
+  });
+});
+</script>
+
 
     <!-- PIE DE PÁGINA -->
     <footer class="botton">
