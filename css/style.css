@@ -117,7 +117,7 @@ body {
     box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
 }
 
-/* Encabezado de tarjeta (ícono + título) */
+/* Encabezado de tarjeta  */
 .card_header {
     display: flex;
     align-items: center;
@@ -225,6 +225,7 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
 
 /* ESTILOS DE LA PÁGINA SIMULADOR  */
 

@@ -31,7 +31,7 @@ Este proyecto aplica los principios de **HTML5**, **CSS3** y **diseño responsiv
 
 # Autor
 Desarrollado por **William García Leonel**  
-Proyecto académico — Ingeniería Web I — 2025.
+S20 - EA1: Diseño de Interfaces Web - CreditSmart — Ingeniería Web I — 2025.
 
 
 
