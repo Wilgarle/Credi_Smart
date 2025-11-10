@@ -1,134 +1,135 @@
-<!DOCTYPE html>
-<html lang="es">
+
+<!doctype html>
+<html lang="es" data-theme="light">
 <head>
-    <!-- Metadatos básicos -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrediSmart - Solicitar Crédito</title>
-
-    <!-- Enlace al archivo de estilos -->
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CreditSmart — Solicitar Crédito</title>
+  <meta name="description" content="Formulario para solicitar crédito." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-
 <body>
-
-    <!-- NAVEGACIÓN PRINCIPAL -->
-    <nav class="navbar">
-        <div class="container">
-            <h1 class="logo">💵 CrediSmart</h1>
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="simulador.html">Simular Crédito</a></li>
-                <li><a href="solicitar.html" class="active">Solicitar Crédito</a></li>
-            </ul>
-        </div>
+  <header class="topbar">
+    <nav class="container nav" aria-label="Principal">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="CreditSmart" width="28" height="28" />
+        <span>CreditSmart</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="menu">
+        <li><a class="link" href="index.html">Inicio</a></li>
+        <li><a class="link" href="simulador.html">Simulador</a></li>
+        <li><a class="link active" href="solicitar.html">Solicitar</a></li>
+        <li class="divider" aria-hidden="true"></li>
+        <li><button class="btn-ghost" id="themeToggle" aria-label="Cambiar tema">🌓</button></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- ENCABEZADO PRINCIPAL -->
-    <header class="hero">
-        <div class="container">
-            <h2>Solicitud de Crédito</h2>
-            <p>Completa la información para iniciar tu solicitud de crédito con CrediSmart.</p>
+  <main class="container">
+    <section class="section">
+      <header class="section__header">
+        <h1 class="section__title">Solicitud de crédito</h1>
+      </header>
+
+      <form class="form" id="formSolicitud" action="#" novalidate>
+        <fieldset>
+          <legend>Datos personales</legend>
+          <div class="form__grid">
+            <label class="input">
+              <span>Nombre completo</span>
+              <input type="text" name="nombre" placeholder="Tu nombre" required />
+            </label>
+            <label class="input">
+              <span>Cédula</span>
+              <input type="text" name="cedula" inputmode="numeric" pattern="\d{6,10}" placeholder="Ej: 1234567890" required />
+            </label>
+            <label class="input">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="tucorreo@dominio.com" required />
+            </label>
+            <label class="input">
+              <span>Teléfono</span>
+              <input type="tel" name="telefono" pattern="\d{7,10}" placeholder="Ej: 3001234567" required />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Datos del crédito</legend>
+          <div class="form__grid">
+            <label class="input">
+              <span>Tipo de crédito</span>
+              <select name="tipo" id="tipo" required></select>
+            </label>
+            <label class="input">
+              <span>Monto solicitado</span>
+              <input type="text" name="monto" id="monto" placeholder="$" required />
+            </label>
+            <label class="input">
+              <span>Plazo (meses)</span>
+              <select name="plazo" required>
+                <option>12</option>
+                <option>24</option>
+                <option>36</option>
+                <option>48</option>
+                <option>60</option>
+              </select>
+            </label>
+            <label class="input input--full">
+              <span>Destino del crédito</span>
+              <textarea name="destino" rows="3" placeholder="Describe el uso del crédito..." required></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Datos laborales</legend>
+          <div class="form__grid">
+            <label class="input">
+              <span>Empresa donde trabaja</span>
+              <input type="text" name="empresa" placeholder="Nombre de la empresa" required />
+            </label>
+            <label class="input">
+              <span>Cargo</span>
+              <input type="text" name="cargo" placeholder="Tu cargo" required />
+            </label>
+            <label class="input">
+              <span>Ingresos mensuales</span>
+              <input type="text" name="ingresos" id="ingresos" placeholder="$" required />
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form__actions">
+          <button class="btn" type="submit">Enviar solicitud</button>
+          <button class="btn btn-outline" type="button" id="btnLimpiar">Limpiar formulario</button>
         </div>
-    </header>
+      </form>
+    </section>
+  </main>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="container">
-        <section class="credits_section">
-            <h3>Formulario de Solicitud</h3>
-            <p>Los campos marcados con * son obligatorios.</p>
+  <div id="modal" class="modal" hidden>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <h3 id="modalTitle">Solicitud enviada</h3>
+      <p>Gracias por confiar en CreditSmart. En breve te contactaremos para continuar el proceso.</p>
+      <div class="modal__actions">
+        <a class="btn btn-outline" href="index.html" id="modalHome">Ir al inicio</a>
+        <button class="btn" id="modalClose">Entendido</button>
+      </div>
+    </div>
+  </div>
 
-            <!-- FORMULARIO PRINCIPAL -->
-            <form class="credit_form">
+  <footer class="container footer">
+    <p>© 2025 CreditSmart · FinTech Solutions S.A.S</p>
+  </footer>
 
-                <!-- BLOQUE 1: DATOS PERSONALES -->
-                <fieldset class="form_group">
-                    <!-- <legend> título del grupo -->
-                    <legend>Datos Personales</legend>
-
-                    <label for="nombre">Nombre completo *</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
-
-                    <label for="cedula">Cédula *</label>
-                    <input type="int" id="cedula" name="cedula" placeholder="Ej: 1012345678" required>
-
-                    <label for="email">Correo electrónico *</label>
-                    <input type="email" id="email" name="email" placeholder="pepito@jimail.com" required>
-
-                    <label for="telefono">Teléfono *</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 3001234567" required>
-                </fieldset>
-
-                <!-- BLOQUE 2: DATOS DEL CRÉDITO -->
-                <fieldset class="form_group">
-                    <legend>Datos del Crédito</legend>
-
-                    <label for="tipo_credito">Tipo de crédito *</label>
-                    <select id="tipo_credito" name="tipo_credito" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="libre">Crédito Libre Inversión</option>
-                        <option value="vehiculo">Crédito Vehículo</option>
-                        <option value="vivienda">Crédito Vivienda</option>
-                        <option value="educativo">Crédito Educativo</option>
-                        <option value="empresarial">Crédito Empresarial</option>
-                        <option value="consumo">Crédito de Consumo</option>
-                    </select>
-
-                    <label for="monto">Monto solicitado *</label>
-                    <input type="int" id="monto" name="monto" placeholder="Ej: 15000000" required>
-
-                    <label for="plazo">Plazo en meses *</label>
-                    <select id="plazo" name="plazo" required>
-                        <option value="">Selecciona</option>
-                        <option value="12">12 meses</option>
-                        <option value="24">24 meses</option>
-                        <option value="36">36 meses</option>
-                        <option value="48">48 meses</option>
-                        <option value="60">60 meses</option>
-                    </select>
-
-                    <label for="destino">Destino del crédito</label>
-                    <textarea id="destino" name="destino" rows="3" placeholder="Describe brevemente el uso del crédito"></textarea>
-                </fieldset>
-
-                <!-- BLOQUE 3: DATOS LABORALES -->
-                <fieldset class="form_group">
-                    <legend>Datos Laborales</legend>
-
-                    <label for="empresa">Empresa donde trabaja *</label>
-                    <input type="text" id="empresa" name="empresa" placeholder="Ej: Coonatra" required>
-
-                    <label for="cargo">Cargo *</label>
-                    <input type="text" id="cargo" name="cargo" placeholder="Ej: Analista Financiero" required>
-
-                    <label for="ingresos">Ingresos mensuales *</label>
-                    <input type="number" id="ingresos" name="ingresos" placeholder="Ej: 2500000" required>
-                </fieldset>
-
-                <!-- BOTONES DE ACCIÓN -->
-                <div class="form_actions">
-                    <!-- Botón de envío -->
-                    <button type="submit" class="btn_primary">Enviar Solicitud</button>
-
-                    <!-- Botón para limpiar el formulario -->
-                    <button type="reset" class="btn_secondary">Limpiar Formulario</button>
-                </div>
-            </form>
-        </section>
-    </main>
-
-    <!-- PIE DE PÁGINA -->
-    <footer class="botton">
-        <p>&copy; 2025 CrediSmart. Todos los derechos reservados.</p>
-        <p>
-            <a href="#">Política de privacidad</a> | 
-            <a href="#">Contacto</a>
-        </p>
-        <p>
-            <a href="https://www.facebook.com/" target="_blank">Facebook</a> | 
-            <a href="https://twitter.com/" target="_blank">Twitter</a>
-        </p>
-    </footer>
-
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
