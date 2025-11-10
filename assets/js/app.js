@@ -17,7 +17,8 @@
     { id:'vehiculo', name:'Crédito Vehículo', rate:0.155, min:5000000, max:80000000, termMax:60, icon:'credit-vehiculo.png', desc:'Adquiere tu carro con cuotas a tu medida.' },
     { id:'vivienda', name:'Crédito Vivienda', rate:0.128, min:40000000, max:500000000, termMax:240, icon:'credit-vivienda.jpg', desc:'Tu hogar, más cerca con tasas competitivas.' },
     { id:'educativo', name:'Crédito Educativo', rate:0.142, min:1000000, max:30000000, termMax:48, icon:'credit-educativo.png', desc:'Financia tus estudios con planes flexibles.' },
-    { id:'empresarial', name:'Crédito Empresarial', rate:0.180, min:10000000, max:300000000, termMax:84, icon:'credit-empresarial.png', desc:'Impulsa tu negocio con capital oportuno.' }
+    { id:'empresarial', name:'Crédito Empresarial', rate:0.180, min:10000000, max:300000000, termMax:84, icon:'credit-empresarial.png', desc:'Impulsa tu negocio con capital oportuno.' },
+    { id: 'consumo', name: 'Crédito de Consumo', rate: 0.224, min: 500000, max: 10000000, termMax: 24, icon: 'credit-consumo.png', desc: 'Compra lo que quieras, cuando quieras. Sin trámites extensos.' }
   ];
 
   const fmtMoney = (v)=> new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0}).format(v);
