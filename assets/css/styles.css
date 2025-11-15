@@ -68,6 +68,13 @@ body{
   letter-spacing:.2px; 
 }
 
+
+.site-logo{
+  height:2.7rem;
+  width:auto;
+  display:block;
+}
+
 .menu{ 
   display:flex; 
   align-items:center; 
@@ -472,7 +479,10 @@ html[data-theme="dark"] .meta .tag{ background:#0F3F33; color:#E7F6EF; }
 
 @keyframes float{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-4px);} }
 
-@media (max-width: 840px){ .hero{ grid-template-columns: 1fr; } }
+@media (max-width: 840px){ 
+  .hero{ grid-template-columns: 1fr; } 
+}
+
 @media (max-width: 720px){
   .hamburger{ display:block; }
   .menu{ 
