@@ -90,7 +90,7 @@ creditsmart-react/
 │   │   ├── credit-vehiculo.png
 │   │   └── credit-vivienda.jpg
 │   │   └── hero_image.jpg
-│   └── logo.svg                    # Logo principal
+│   └── logo.png                    # Logo principal
 │
 ├── src/                            # Código fuente principal
 │   ├── components/                 # Componentes reutilizables

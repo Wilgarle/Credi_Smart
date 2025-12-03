@@ -16,7 +16,7 @@ creditsmart-react/
 │   │   ├── 📸 Screenshot_1.png
 │   │   ├── 📸 Screenshot_2.png
 │   │   └── 📸 Screenshot_3.png
-│   └── 🎨 logo.svg
+│   └── 🎨 logo.png
 │
 ├── 📁 src/
 │   ├── 📁 components/

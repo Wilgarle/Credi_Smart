@@ -74,7 +74,7 @@ function Navbar() {
     <header className="topbar">
       <nav className="container nav" aria-label="Principal">
         <Link className="brand" to="/">
-          <img src="/logo.svg" alt="CreditSmart" width="28" height="28" />
+          <img src="/img/logo.png" alt="CreditSmart" width="40" height="40" />
           <span>CreditSmart</span>
         </Link>
         
