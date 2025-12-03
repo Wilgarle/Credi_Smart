@@ -486,6 +486,17 @@ Este proyecto fue desarrollado colaborativamente:
 
 ## 📚 Capturas del Proyecto
 
+# INDEX 
+![captura1](assets/img/Screenshot_1.png)
+
+# SIMULADOR
+![captura2](assets/img/Screenshot_2.png)
+![captura3](assets/img/Screenshot_2_1.png)
+
+# FORMULARIO SOLICITUD
+![captura3](assets/img/Screenshot_3.png)
+![captura3](assets/img/Screenshot_3_1.png)
+![captura3](assets/img/Screenshot_3_2.png)
 
 
 ---
