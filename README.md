@@ -503,7 +503,7 @@ Este proyecto fue desarrollado colaborativamente:
 
 ## 🔗 Enlaces del Proyecto
 
-**Repositorio GitHub:** [https://github.com/tu-usuario/creditsmart-react]
+**Repositorio GitHub:** [\[https://github.com/tu-usuario/creditsmart-react\]](https://github.com/Wilgarle/Credi_Smart.git)
 
 **Demo en vivo:** Ejecutar `npm run dev` y abrir http://localhost:5173
 
