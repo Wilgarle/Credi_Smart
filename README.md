@@ -487,16 +487,16 @@ Este proyecto fue desarrollado colaborativamente:
 ## 📚 Capturas del Proyecto
 
 # INDEX 
-![captura1](/img/Screenshot_1.png)
+![captura1](./public/img/Screenshot_1.png)
 
 # SIMULADOR
-![captura2](/img/Screenshot_2.png)
-![captura3](/img/Screenshot_2_1.png)
+![captura2](./public/img/Screenshot_2.png)
+![captura3](./public/img/Screenshot_2_1.png)
 
 # FORMULARIO SOLICITUD
-![captura4](/img/Screenshot_3.png)
-![captura5](/img/Screenshot_3_1.png)
-![captura6](/img/Screenshot_3_2.png)
+![captura4](./public/img/Screenshot_3.png)
+![captura5](./public/img/Screenshot_3_1.png)
+![captura6](./public/img/Screenshot_3_2.png)
 
 
 ---
