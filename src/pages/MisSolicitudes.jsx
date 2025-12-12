@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { formatMoney } from '../data/creditsData';
@@ -8,10 +9,11 @@ import { formatMoney } from '../data/creditsData';
  * Lista las solicitudes de crédito guardadas con filtros por email y cédula
  */
 function MisSolicitudes() {
+  const [searchParams] = useSearchParams();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filterEmail, setFilterEmail] = useState('');
+  const [filterEmail, setFilterEmail] = useState(searchParams.get('email') || '');
   const [filterCedula, setFilterCedula] = useState('');
 
   useEffect(() => {
@@ -22,6 +24,13 @@ function MisSolicitudes() {
     try {
       setLoading(true);
       setError(null);
+      
+      // Solo cargar si hay filtros o query param
+      if (!filterEmail && !filterCedula && !searchParams.get('email')) {
+        setRequests([]);
+        setLoading(false);
+        return;
+      }
       
       let q = collection(db, 'requests');
       
@@ -34,16 +43,24 @@ function MisSolicitudes() {
         if (filterCedula) {
           conditions.push(where('cedula', '==', filterCedula));
         }
-        q = query(q, ...conditions, orderBy('fechaSolicitud', 'desc'));
-      } else {
-        q = query(q, orderBy('fechaSolicitud', 'desc'));
+        q = query(q, ...conditions);
+      } else if (searchParams.get('email')) {
+        q = query(q, where('email', '==', searchParams.get('email')));
       }
       
       const querySnapshot = await getDocs(q);
-      const requestsList = querySnapshot.docs.map(doc => ({
+      let requestsList = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
+      
+      // Ordenar por fecha descendente
+      requestsList.sort((a, b) => b.fechaSolicitud.toDate() - a.fechaSolicitud.toDate());
+      
+      // Si hay filtro de email desde query param, mostrar solo la más reciente
+      if (searchParams.get('email')) {
+        requestsList = requestsList.slice(0, 1); // Solo la más reciente
+      }
       
       setRequests(requestsList);
     } catch (err) {
@@ -108,21 +125,21 @@ function MisSolicitudes() {
           <div className="requests-list">
             {requests.map((request) => (
               <div key={request.id} className="request-card">
-                <div className="request-grid">
-                  <div className="request-info">
-                    <h3 className="request-name">{request.nombre}</h3>
-                    <p><strong>Email:</strong> {request.email}</p>
-                    <p><strong>Cédula:</strong> {request.cedula}</p>
-                    <p><strong>Teléfono:</strong> {request.telefono}</p>
-                  </div>
-                  <div className="request-details">
-                    <p><strong>Tipo de Crédito:</strong> {request.tipo}</p>
-                    <p><strong>Monto:</strong> {formatMoney(request.monto)}</p>
-                    <p><strong>Plazo:</strong> {request.plazo} meses</p>
-                    <p><strong>Cuota Mensual:</strong> {formatMoney(request.cuotaMensual)}</p>
-                    <p><strong>Fecha:</strong> {request.fechaSolicitud?.toDate().toLocaleDateString()}</p>
-                  </div>
+                <div className="request-info">
+                  <h3 className="request-name">{request.nombre}</h3>
+                  <p><strong>Email:</strong> {request.email}</p>
+                  <p><strong>Cédula:</strong> {request.cedula}</p>
+                  <p><strong>Teléfono:</strong> {request.telefono}</p>
                 </div>
+                <hr className="request-divider" />
+                <div className="request-details">
+                  <p><strong>Tipo de Crédito:</strong> {request.tipo}</p>
+                  <p><strong>Monto:</strong> {formatMoney(request.monto)}</p>
+                  <p><strong>Plazo:</strong> {request.plazo} meses</p>
+                  <p><strong>Cuota Mensual:</strong> {formatMoney(request.cuotaMensual)}</p>
+                  <p><strong>Fecha:</strong> {request.fechaSolicitud?.toDate().toLocaleDateString()}</p>
+                </div>
+                <hr className="request-divider" />
                 <div className="request-extra">
                   <p><strong>Destino:</strong> {request.destino}</p>
                   <p><strong>Empresa:</strong> {request.empresa}</p>

@@ -536,15 +536,9 @@ html[data-theme="dark"] .meta .tag{ background:#0F3F33; color:#E7F6EF; }
   box-shadow: var(--shadow);
 }
 
-.request-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-}
-
 .request-info,
-.request-details {
+.request-details,
+.request-extra {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -556,18 +550,22 @@ html[data-theme="dark"] .meta .tag{ background:#0F3F33; color:#E7F6EF; }
   font-size: 1.2rem;
 }
 
-.request-extra {
+.request-info p,
+.request-details p,
+.request-extra p {
+  margin: 0;
+  color: var(--text);
+}
+
+.request-divider {
+  border: none;
   border-top: 1px solid var(--line);
-  padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
 @media (max-width: 768px) {
-  .request-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .request-card {
+    padding: 1rem;
   }
 }
 
@@ -657,5 +655,77 @@ html[data-theme="dark"] .meta .tag{ background:#0F3F33; color:#E7F6EF; }
 
   .social-links {
     justify-content: center;
+  }
+}
+
+/* Estilos para Tarjeta de Éxito */
+.success-card {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.success-header {
+  margin-bottom: 2rem;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.success-header h2 {
+  color: var(--primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.success-header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.request-summary {
+  margin-bottom: 2rem;
+}
+
+.summary-info,
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summary-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+}
+
+.summary-info p,
+.summary-details p {
+  margin: 0;
+  color: var(--text);
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .success-actions {
+    flex-direction: column;
+    align-items: center;
   }
 }

@@ -81,6 +81,18 @@ function RequestCredit() {
   const [saveError, setSaveError] = useState(null);
   
   /**
+   * @state {boolean} isSuccess - Estado de éxito al guardar
+   * @initialValue false - No éxito por defecto
+   */
+  const [isSuccess, setIsSuccess] = useState(false);
+  
+  /**
+   * @state {Object} createdRequest - Datos de la solicitud creada
+   * @initialValue null - Sin solicitud por defecto
+   */
+  const [createdRequest, setCreatedRequest] = useState(null);
+  
+  /**
    * @state {number} monthlyPayment - Cuota mensual calculada
    * @initialValue 0 - Se calcula automáticamente con useEffect
    * @updates Cuando cambian: monto, plazo o tipo de crédito
@@ -215,10 +227,29 @@ function RequestCredit() {
     return error;
   };
 
+  // Función para capitalizar primera letra de cada palabra (para nombre)
+  const capitalizeWords = (str) => {
+    return str.split(' ').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    ).join(' ');
+  };
+
+  // Función para capitalizar primera letra (para otros campos)
+  const capitalizeFirst = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   // Manejador de cambios en los campos
   const handleChange = (e) => {
     const { name, value } = e.target;
     let formattedValue = value;
+
+    // Formatear campos de texto
+    if (name === 'nombre') {
+      formattedValue = capitalizeWords(value);
+    } else if (['destino', 'empresa', 'cargo'].includes(name)) {
+      formattedValue = capitalizeFirst(value);
+    }
 
     // Formatear campos de moneda
     if (name === 'monto' || name === 'ingresos') {
@@ -292,11 +323,11 @@ function RequestCredit() {
         cuotaMensual: monthlyPayment,
         fechaSolicitud: new Date()
       };
-      await addDoc(collection(db, 'requests'), requestData);
+      const docRef = await addDoc(collection(db, 'requests'), requestData);
       
-      // Limpiar formulario y redirigir
-      handleClear();
-      navigate('/mis-solicitudes');
+      // Mostrar éxito con datos de la solicitud
+      setCreatedRequest({ id: docRef.id, ...requestData });
+      setIsSuccess(true);
     } catch (error) {
       console.error('Error saving request:', error);
       setSaveError('Error al guardar la solicitud. Inténtalo de nuevo.');
@@ -330,10 +361,21 @@ function RequestCredit() {
     setShowModal(false);
   };
 
-  // Ir al inicio desde el modal
+  // Ir a mis solicitudes
+  const handleGoToRequests = () => {
+    navigate('/mis-solicitudes?email=' + createdRequest.email);
+  };
+
+  // Ir a inicio
   const handleGoHome = () => {
-    setShowModal(false);
     navigate('/');
+  };
+
+  // Nueva solicitud (reiniciar)
+  const handleNewRequest = () => {
+    setIsSuccess(false);
+    setCreatedRequest(null);
+    handleClear();
   };
 
   return (
@@ -343,7 +385,45 @@ function RequestCredit() {
           <h1 className="section__title">Solicitud de crédito</h1>
         </header>
 
-        <form className="form" onSubmit={handleSubmit} noValidate>
+        {isSuccess && createdRequest ? (
+          <div className="success-card">
+            <div className="success-header">
+              <div className="success-icon">✅</div>
+              <h2>¡Solicitud enviada exitosamente!</h2>
+              <p>Tu solicitud de crédito ha sido guardada. Revisa los detalles abajo.</p>
+            </div>
+
+            <div className="request-summary">
+              <div className="summary-info">
+                <h3>{createdRequest.nombre}</h3>
+                <p><strong>Email:</strong> {createdRequest.email}</p>
+                <p><strong>Cédula:</strong> {createdRequest.cedula}</p>
+                <p><strong>Teléfono:</strong> {createdRequest.telefono}</p>
+              </div>
+              <hr className="request-divider" />
+              <div className="summary-details">
+                <p><strong>Tipo de Crédito:</strong> {createdRequest.tipo}</p>
+                <p><strong>Monto:</strong> {formatMoney(createdRequest.monto)}</p>
+                <p><strong>Plazo:</strong> {createdRequest.plazo} meses</p>
+                <p><strong>Cuota Mensual:</strong> {formatMoney(createdRequest.cuotaMensual)}</p>
+                <p><strong>Fecha:</strong> {createdRequest.fechaSolicitud.toLocaleDateString()}</p>
+              </div>
+            </div>
+
+            <div className="success-actions">
+              <button className="btn" onClick={handleGoToRequests}>
+                Ver mis solicitudes
+              </button>
+              <button className="btn btn-outline" onClick={handleGoHome}>
+                Ir a inicio
+              </button>
+              <button className="btn btn-ghost" onClick={handleNewRequest}>
+                Nueva solicitud
+              </button>
+            </div>
+          </div>
+        ) : (
+          <form className="form" onSubmit={handleSubmit} noValidate>
           {/* Datos personales */}
           <fieldset>
             <legend>Datos personales</legend>
@@ -567,33 +647,8 @@ function RequestCredit() {
             {saveError && <p className="error">{saveError}</p>}
           </div>
         </form>
+        )}
       </section>
-
-      {/* Modal de confirmación */}
-      {showModal && (
-        <div className="modal" onClick={handleCloseModal}>
-          <div 
-            className="modal__dialog" 
-            role="dialog" 
-            aria-modal="true" 
-            aria-labelledby="modalTitle"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 id="modalTitle">Solicitud enviada</h3>
-            <p>
-              Gracias por confiar en CreditSmart. En breve te contactaremos para continuar el proceso.
-            </p>
-            <div className="modal__actions">
-              <button className="btn btn-outline" onClick={handleGoHome}>
-                Ir al inicio
-              </button>
-              <button className="btn" onClick={handleCloseModal}>
-                Entendido
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
