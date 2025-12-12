@@ -19,10 +19,9 @@ Es una transformación de una aplicación estática HTML/CSS/JS original a una *
 - **Vite** - Herramienta de construcción rápida (más moderna que Create React App)
 - **React Router DOM v6** - Manejo de navegación entre páginas
 
-### Lenguajes y Frameworks
-- **JavaScript ES6+** - Con hooks, componentes funcionales y métodos de arrays
-- **CSS3** - Estilos modernos con variables CSS y diseño responsive
-- **HTML5** - Estructura semántica
+### Backend y Base de Datos
+- **Firebase/Firestore** - Base de datos NoSQL en la nube para persistencia de datos
+- **Firebase Hosting** - Despliegue en producción (opcional)
 
 ### Características Técnicas
 - ✅ Componentes funcionales con hooks (useState, useEffect, useLocation, useSearchParams)
@@ -31,6 +30,10 @@ Es una transformación de una aplicación estática HTML/CSS/JS original a una *
 - ✅ Búsqueda y filtros dinámicos con lógica de superposición
 - ✅ Cálculos financieros usando fórmula de amortización francesa
 - ✅ Persistencia de tema en localStorage
+- ✅ Integración con Firebase/Firestore para persistencia en la nube
+- ✅ Operaciones CRUD: Crear, Leer, Actualizar, Eliminar solicitudes
+- ✅ Consultas en tiempo real con filtros por email y cédula
+- ✅ Manejo de errores y estados de carga
 - ✅ Diseño responsive (móvil, tablet, desktop)
 
 ---
@@ -54,18 +57,25 @@ cd Credi_Smart
 npm install
 ```
 
-**3. Ejecutar en modo desarrollo**
+**3. Configurar Firebase (requerido para persistencia)**
+```bash
+# Crear archivo .env con tus credenciales de Firebase
+cp .env.example .env
+# Editar .env con las credenciales reales de tu proyecto Firebase
+```
+
+**4. Ejecutar en modo desarrollo**
 ```bash
 npm run dev
 ```
 La aplicación estará disponible en **http://localhost:5173**
 
-**4. Construir para producción (opcional)**
+**5. Construir para producción (opcional)**
 ```bash
 npm run build
 ```
 
-**5. Previsualizar build (opcional)**
+**6. Previsualizar build (opcional)**
 ```bash
 npm run preview
 ```
@@ -168,6 +178,32 @@ creditsmart-react/
 Para más detalles técnicos sobre la implementación, arquitectura, cumplimiento de la rúbrica y guías técnicas, consultar:
 
 📖 **[DOCUMENTACION.md](./DOCUMENTACION.md)**
+
+---
+
+## 🔥 Configuración de Firebase
+
+Para habilitar la persistencia de datos en la nube, sigue estos pasos:
+
+### 1. Crear Proyecto en Firebase Console
+1. Ve a [Firebase Console](https://console.firebase.google.com/)
+2. Crea un nuevo proyecto
+3. Habilita Firestore Database en modo de producción
+
+### 2. Crear Colecciones
+- **credits**: Productos crediticios (crear manualmente con los datos de `src/data/creditsData.js`)
+- **requests**: Solicitudes de usuarios (se crearán automáticamente al enviar formularios)
+
+### 3. Configurar Credenciales
+1. Ve a Configuración del Proyecto > General > Tus apps
+2. Crea una app web y copia las credenciales
+3. Actualiza el archivo `.env` con tus valores reales
+
+### 4. Verificar Funcionalidades
+- ✅ Cargar créditos desde Firestore
+- ✅ Crear nuevas solicitudes
+- ✅ Ver solicitudes en "Mis Solicitudes" con filtros
+- ✅ Manejo de errores al desconectar internet
 
 ---
 

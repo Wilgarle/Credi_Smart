@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Simulator from './pages/Simulator';
 import RequestCredit from './pages/RequestCredit';
+import MisSolicitudes from './pages/MisSolicitudes';
 
 // Estilos globales
 import './App.css';
@@ -34,6 +35,9 @@ function App() {
         
         {/* Formulario de solicitud de crédito con validaciones */}
         <Route path="/solicitar" element={<RequestCredit />} />
+        
+        {/* Página de mis solicitudes con filtros */}
+        <Route path="/mis-solicitudes" element={<MisSolicitudes />} />
       </Routes>
       <Footer />
     </BrowserRouter>

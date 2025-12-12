@@ -1,8 +1,37 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../config/firebase';
 import CreditCard from '../components/CreditCard';
-import { creditsData } from '../data/creditsData';
+import { creditsData } from '../data/creditsData'; // Fallback local
 
 function Home() {
+  const [credits, setCredits] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadCredits = async () => {
+      try {
+        const creditsCollection = collection(db, 'credits');
+        const creditsSnapshot = await getDocs(creditsCollection);
+        const creditsList = creditsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setCredits(creditsList);
+      } catch (err) {
+        console.error('Error loading credits:', err);
+        setError('Error al cargar los créditos. Usando datos locales.');
+        setCredits(creditsData); // Fallback
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCredits();
+  }, []);
+
   return (
     <main>
       {/* Hero Section */}
@@ -38,8 +67,10 @@ function Home() {
         <header className="section__header">
           <h2 className="section__title">Productos destacados</h2>
         </header>
+        {loading && <p className="loading">Cargando créditos...</p>}
+        {error && <p className="error">{error}</p>}
         <div className="grid">
-          {creditsData.map((credit) => (
+          {credits.map((credit) => (
             <CreditCard key={credit.id} credit={credit} />
           ))}
         </div>

@@ -105,6 +105,11 @@ function Navbar() {
               Solicitar
             </Link>
           </li>
+          <li>
+            <Link className={isActive('/mis-solicitudes')} to="/mis-solicitudes">
+              Mis Solicitudes
+            </Link>
+          </li>
           <li className="divider" aria-hidden="true"></li>
           <li>
             <button 

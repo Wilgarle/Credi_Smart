@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 import { creditsData, formatMoney, calculateMonthlyPayment } from '../data/creditsData';
 
 /**
@@ -65,6 +67,18 @@ function RequestCredit() {
    * @updates true al enviar formulario válido, false al cerrar
    */
   const [showModal, setShowModal] = useState(false);
+  
+  /**
+   * @state {boolean} saving - Estado de guardado en Firestore
+   * @initialValue false - No guardando por defecto
+   */
+  const [saving, setSaving] = useState(false);
+  
+  /**
+   * @state {string} saveError - Error al guardar en Firestore
+   * @initialValue null - Sin error por defecto
+   */
+  const [saveError, setSaveError] = useState(null);
   
   /**
    * @state {number} monthlyPayment - Cuota mensual calculada
@@ -242,7 +256,7 @@ function RequestCredit() {
   };
 
   // Manejador del envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validar todos los campos
@@ -267,8 +281,28 @@ function RequestCredit() {
       return;
     }
 
-    // Si todo está bien, mostrar modal
-    setShowModal(true);
+    // Guardar en Firestore
+    setSaving(true);
+    setSaveError(null);
+    try {
+      const requestData = {
+        ...formData,
+        monto: parseMoneyString(formData.monto), // Guardar como número
+        ingresos: parseMoneyString(formData.ingresos), // Guardar como número
+        cuotaMensual: monthlyPayment,
+        fechaSolicitud: new Date()
+      };
+      await addDoc(collection(db, 'requests'), requestData);
+      
+      // Limpiar formulario y redirigir
+      handleClear();
+      navigate('/mis-solicitudes');
+    } catch (error) {
+      console.error('Error saving request:', error);
+      setSaveError('Error al guardar la solicitud. Inténtalo de nuevo.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   // Limpiar formulario
@@ -524,12 +558,13 @@ function RequestCredit() {
 
           {/* Acciones del formulario */}
           <div className="form__actions">
-            <button className="btn" type="submit">
-              Enviar solicitud
+            <button className="btn" type="submit" disabled={saving}>
+              {saving ? 'Guardando...' : 'Enviar solicitud'}
             </button>
-            <button className="btn btn-outline" type="button" onClick={handleClear}>
+            <button className="btn btn-outline" type="button" onClick={handleClear} disabled={saving}>
               Limpiar formulario
             </button>
+            {saveError && <p className="error">{saveError}</p>}
           </div>
         </form>
       </section>
