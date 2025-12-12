@@ -107,21 +107,15 @@ function MisSolicitudes() {
         {!loading && !error && requests.length > 0 && (
           <div className="requests-list">
             {requests.map((request) => (
-              <div key={request.id} className="request-card" style={{
-                border: '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '1rem',
-                marginBottom: '1rem',
-                backgroundColor: '#f9f9f9'
-              }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <div>
-                    <h3>{request.nombre}</h3>
+              <div key={request.id} className="request-card">
+                <div className="request-grid">
+                  <div className="request-info">
+                    <h3 className="request-name">{request.nombre}</h3>
                     <p><strong>Email:</strong> {request.email}</p>
                     <p><strong>Cédula:</strong> {request.cedula}</p>
                     <p><strong>Teléfono:</strong> {request.telefono}</p>
                   </div>
-                  <div>
+                  <div className="request-details">
                     <p><strong>Tipo de Crédito:</strong> {request.tipo}</p>
                     <p><strong>Monto:</strong> {formatMoney(request.monto)}</p>
                     <p><strong>Plazo:</strong> {request.plazo} meses</p>
@@ -129,7 +123,7 @@ function MisSolicitudes() {
                     <p><strong>Fecha:</strong> {request.fechaSolicitud?.toDate().toLocaleDateString()}</p>
                   </div>
                 </div>
-                <div style={{ marginTop: '1rem' }}>
+                <div className="request-extra">
                   <p><strong>Destino:</strong> {request.destino}</p>
                   <p><strong>Empresa:</strong> {request.empresa}</p>
                   <p><strong>Cargo:</strong> {request.cargo}</p>
